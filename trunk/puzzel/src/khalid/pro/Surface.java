@@ -29,9 +29,9 @@ public class Surface extends JPanel implements MouseListener {
 
 	public void refresh()
 	{
-		this.puzzle = puzzle;
 		this.dimension = puzzle.getDimension(); // le nombre de cases
-		this.taille = (largeur - (2 * padding)) / dimension; // la taille d'u
+		this.taille = (largeur - (2 * padding)) / dimension; // la taille d'u*
+		this.repaint();
 	}
 	protected void paintComponent(Graphics g) {
 

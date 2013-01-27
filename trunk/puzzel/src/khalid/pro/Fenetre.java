@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.concurrent.Future;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,16 +17,22 @@ public class Fenetre extends JFrame implements KeyListener {
 	Surface surface;
 
 	JMenuBar menu = new JMenuBar();
+	
 	JMenu menuDimension = new JMenu("Dimension");
 	JMenu menuFichier = new JMenu("Fichier");
 	JMenu menuHeristique = new JMenu("Heuristique");
+	JMenu menuAction=new JMenu("Action");
+	
 	JMenuItem mi2 = new JMenuItem("2 x 2");
 	JMenuItem mi3 = new JMenuItem("3 x 3");
 	JMenuItem mi4 = new JMenuItem("4 x 4");
 	JMenuItem mi5 = new JMenuItem("5 x 5");
 	JMenuItem miQuitter = new JMenuItem("Quitter");
-	JMenuItem mih1 = new JMenuItem("h1 :Case male placé ");
+	JMenuItem mih1 = new JMenuItem("h1 :Case male placï¿½ ");
 	JMenuItem mih2 = new JMenuItem("h2 :Somme des distances ");
+	JMenuItem miInitatisation =new JMenuItem("Initialisation");
+	JMenuItem miDesordonnee =new JMenuItem("DesordonnÃ©e");
+	
 	
 
 	public Fenetre() {
@@ -44,6 +52,7 @@ public class Fenetre extends JFrame implements KeyListener {
 
 		// JMenu--------------------------------------------------------------------------
 		menu.add(menuFichier);
+		menu.add(menuAction);
 		menu.add(menuDimension);
 		menu.add(menuHeristique);
 		menuFichier.add(miQuitter);
@@ -53,6 +62,8 @@ public class Fenetre extends JFrame implements KeyListener {
 		menuDimension.add(mi5);
 		menuHeristique.add(mih1);
 		menuHeristique.add(mih2);
+		menuAction.add(miInitatisation);
+		menuAction.add(miDesordonnee);
 		
 		this.setJMenuBar(menu);
 		// Evenement
@@ -76,6 +87,22 @@ public class Fenetre extends JFrame implements KeyListener {
 		mi5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				initPuzzle(5);
+			}
+		});
+		miInitatisation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				initPuzzle(puzzle.getDimension());
+			}
+		});
+		miDesordonnee.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				puzzle.Desordonner();
+				surface.refresh();
+			}
+		});
+		miQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 
@@ -111,7 +138,6 @@ public class Fenetre extends JFrame implements KeyListener {
 	public void initPuzzle(int dimension) {
 		this.puzzle.setDimension(dimension);
 		this.surface.refresh();
-		this.repaint();
 	}
 
 }
