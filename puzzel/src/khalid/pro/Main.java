@@ -4,7 +4,10 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		 Fenetre f=new Fenetre();
+		String name = System.getProperty ( "os.name" );
+		System.out.println(name);
+		Fenetre f=new Fenetre();
+		 
 
 	}
 
