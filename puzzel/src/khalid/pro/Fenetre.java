@@ -105,6 +105,17 @@ public class Fenetre extends JFrame implements KeyListener {
 				dispose();
 			}
 		});
+		mih1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FenetreDetail f=new FenetreDetail(new casesNonPlace());
+			}
+		});
+		mih2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FenetreDetail f=new FenetreDetail(new sommeDistances());
+			}
+		});
 
 		// ------------------------------------------------------------------------------
 

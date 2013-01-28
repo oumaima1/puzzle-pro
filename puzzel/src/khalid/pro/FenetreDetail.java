@@ -1,0 +1,55 @@
+package khalid.pro;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class FenetreDetail extends JFrame {
+
+	IHeuristique heuristique;
+	JButton btSuivat=new JButton("Suivant");
+	JButton btPrecedent=new JButton("Precedent");
+	JButton btRsolution=new JButton("Resolution");
+	
+	
+	public FenetreDetail(IHeuristique h)
+	{
+		heuristique=h;
+		this.init();
+		this.setVisible(true);
+	}
+	public void init()
+	{
+		// fenetre ************************************************************
+		
+		this.setSize(405, 250);
+		this.setTitle("Détails");
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		
+		//Panel d'information *************************************************
+		
+		JPanel pan_info=new JPanel();
+		pan_info.setBorder(BorderFactory.createTitledBorder("Informations :"));
+		this.getContentPane().add(pan_info ,BorderLayout.CENTER);
+		
+		//Button****************************************************************
+		
+		JPanel pan_bt=new JPanel();
+		pan_bt.setBorder(BorderFactory.createTitledBorder(""));
+		Dimension dim=new Dimension(120,35);
+		btPrecedent.setPreferredSize(dim);
+		btSuivat.setPreferredSize(dim);
+		pan_bt.setLayout(new BorderLayout());
+		pan_bt.add(btSuivat, BorderLayout.EAST);
+		pan_bt.add(btRsolution, BorderLayout.CENTER);
+		pan_bt.add(btPrecedent, BorderLayout.WEST);
+		this.getContentPane().add(pan_bt,BorderLayout.SOUTH);
+		
+		
+	}
+}
