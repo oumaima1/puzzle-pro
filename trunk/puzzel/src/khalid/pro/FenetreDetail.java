@@ -2,6 +2,9 @@ package khalid.pro;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -10,6 +13,8 @@ import javax.swing.JPanel;
 
 public class FenetreDetail extends JFrame {
 
+	ArrayList<Puzzle> listSuccesseur=new ArrayList<Puzzle>();
+	
 	IHeuristique heuristique;
 	JButton btSuivat=new JButton("Suivant");
 	JButton btPrecedent=new JButton("Precedent");
@@ -50,6 +55,25 @@ public class FenetreDetail extends JFrame {
 		pan_bt.add(btPrecedent, BorderLayout.WEST);
 		this.getContentPane().add(pan_bt,BorderLayout.SOUTH);
 		
+		//Clique sur le bouton Précedent *****************************************
+		
+		btPrecedent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		//Clique sur le bouton Suivant *****************************************
+		btSuivat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		//Clique sur le bouton Resolution *****************************************
+		btRsolution.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		
 	}
 }
