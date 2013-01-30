@@ -18,7 +18,7 @@ public class FenetreDetail extends JFrame {
 	IHeuristique heuristique;
 	JButton btSuivat=new JButton("Suivant");
 	JButton btPrecedent=new JButton("Precedent");
-	JButton btRsolution=new JButton("Resolution");
+	JButton btRsolution=new JButton("Résolution");
 	
 	
 	public FenetreDetail(IHeuristique h)
@@ -32,7 +32,7 @@ public class FenetreDetail extends JFrame {
 		// fenetre ************************************************************
 		
 		this.setSize(405, 250);
-		this.setTitle("DÃ©tails");
+		this.setTitle("Détails");
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		
