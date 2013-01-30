@@ -28,10 +28,10 @@ public class Fenetre extends JFrame implements KeyListener {
 	JMenuItem mi4 = new JMenuItem("4 x 4");
 	JMenuItem mi5 = new JMenuItem("5 x 5");
 	JMenuItem miQuitter = new JMenuItem("Quitter");
-	JMenuItem mih1 = new JMenuItem("h1 :Case male placï¿½ ");
+	JMenuItem mih1 = new JMenuItem("h1 :Case male placé");
 	JMenuItem mih2 = new JMenuItem("h2 :Somme des distances ");
 	JMenuItem miInitatisation =new JMenuItem("Initialisation");
-	JMenuItem miDesordonnee =new JMenuItem("DesordonnÃ©e");
+	JMenuItem miDesordonnee =new JMenuItem("Desordonnée");
 	
 	
 
