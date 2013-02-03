@@ -9,16 +9,23 @@ public class Puzzle {
 	private int dimension;
 	private Case tab[][];
 
-	public Puzzle(IHeuristique h, int dimension) {
-		this.heuristique = h;
-		this.dimension = dimension;
+	public Puzzle(int dimension) {
+
 		this.setDimension(dimension);
 
 	}
 
+	public Puzzle(Puzzle p) {
+		this.dimension=p.getDimension();
+		for (int i = 0; i < dimension; i++) {
+			for (int j = 0; j < dimension; j++) {
+				this.tab[i][j] = p.tab[i][j];
+			}
+		}
+	}
+
 	public Case getCase(int i, int j) {
 		return this.tab[i][j];
-
 	}
 
 	public void init() {
@@ -34,8 +41,28 @@ public class Puzzle {
 		}
 	}
 
+	public boolean isInit() {
+		int compt = 65;
+		for (int i = 0; i < dimension; i++) {
+			for (int j = 0; j < dimension; j++) {
+				if (tab[i][j].getValeur() != (char) compt) {
+					if (i != dimension - 1 && j != dimension - 1) {
+						return false;
+
+					}
+				}
+				compt++;
+			}
+		}
+		return true;
+	}
+
 	public int heuristique() {
 		return heuristique.heuristique(this.tab, this.dimension);
+	}
+
+	public void setheuristique(IHeuristique h) {
+		this.heuristique = h;
 	}
 
 	public ij Case_zero() {
@@ -54,19 +81,19 @@ public class Puzzle {
 		ArrayList<Puzzle> list = new ArrayList<Puzzle>();
 
 		if (this.Permutation_Haute()) {
-			list.add(this);
+			list.add( new Puzzle(this));
 			this.Permutation_Basse();
 		}
 		if (this.Permutation_Basse()) {
-			list.add(this);
+			list.add(new Puzzle(this));
 			this.Permutation_Haute();
 		}
 		if (this.Permutation_Gauche()) {
-			list.add(this);
+			list.add(new Puzzle(this));
 			this.Permutation_Droite();
 		}
 		if (this.Permutation_Droite()) {
-			list.add(this);
+			list.add(new Puzzle(this));
 			this.Permutation_Gauche();
 		}
 
@@ -137,7 +164,7 @@ public class Puzzle {
 	public void setDimension(int dimension) {
 		this.dimension = dimension;
 		tab = new Case[dimension][dimension];
-		Case.compteur=0;
+		Case.compteur = 0;
 		this.init();
 	}
 
