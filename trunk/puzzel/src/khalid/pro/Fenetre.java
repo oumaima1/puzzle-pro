@@ -1,5 +1,6 @@
 package khalid.pro;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.tools.DiagnosticCollector;
 
 public class Fenetre extends JFrame implements KeyListener {
 
@@ -38,12 +40,14 @@ public class Fenetre extends JFrame implements KeyListener {
 	public Fenetre() {
 		this.addKeyListener(this);
 		this.init();
+		this.pack();
+		this.setVisible(true);
 	}
 
 	private void init() {
 
 		// JFrame-----------------------------------------------------------------------
-
+		this.setPreferredSize(new Dimension(405, 451));
 		this.setSize(405, 451);
 		this.setTitle("Puzzle 2.0");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,22 +112,21 @@ public class Fenetre extends JFrame implements KeyListener {
 		mih1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FenetreDetail f=new FenetreDetail(new casesNonPlace());
+				FenetreDetail f=new FenetreDetail(new casesNonPlace(),puzzle);
 			}
 		});
 		mih2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				FenetreDetail f=new FenetreDetail(new sommeDistances());
+				FenetreDetail f=new FenetreDetail(new sommeDistances(),puzzle);
 			}
 		});
 
 		// ------------------------------------------------------------------------------
 
-		this.puzzle = new Puzzle(new sommeDistances(), 3);
+		this.puzzle = new Puzzle(3);
 		this.surface = new Surface(puzzle, 400);
 		this.getContentPane().add(surface);
 
-		this.setVisible(true);
 	}
 
 	public void keyTyped(KeyEvent e) {
