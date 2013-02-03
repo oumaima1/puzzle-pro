@@ -14,15 +14,16 @@ import javax.swing.JPanel;
 public class FenetreDetail extends JFrame {
 
 	ArrayList<Puzzle> listSuccesseur=new ArrayList<Puzzle>();
-	
+	Puzzle puzzle;
 	IHeuristique heuristique;
 	JButton btSuivat=new JButton("Suivant");
 	JButton btPrecedent=new JButton("Precedent");
 	JButton btRsolution=new JButton("Résolution");
 	
 	
-	public FenetreDetail(IHeuristique h)
+	public FenetreDetail(IHeuristique h,Puzzle p)
 	{
+		puzzle=p;
 		heuristique=h;
 		this.init();
 		this.setVisible(true);
