@@ -14,7 +14,6 @@ public class Puzzle {
 		this.setDimension(dimension);
 
 	}
-
 	public Puzzle(Puzzle p) {
 		this.dimension=p.getDimension();
 		for (int i = 0; i < dimension; i++) {
