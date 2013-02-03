@@ -14,8 +14,10 @@ public class Puzzle {
 		this.setDimension(dimension);
 
 	}
+
 	public Puzzle(Puzzle p) {
-		this.dimension=p.getDimension();
+		this.dimension = p.getDimension();
+		tab = new Case[dimension][dimension];
 		for (int i = 0; i < dimension; i++) {
 			for (int j = 0; j < dimension; j++) {
 				this.tab[i][j] = p.tab[i][j];
@@ -47,7 +49,6 @@ public class Puzzle {
 				if (tab[i][j].getValeur() != (char) compt) {
 					if (i != dimension - 1 && j != dimension - 1) {
 						return false;
-
 					}
 				}
 				compt++;
@@ -80,7 +81,7 @@ public class Puzzle {
 		ArrayList<Puzzle> list = new ArrayList<Puzzle>();
 
 		if (this.Permutation_Haute()) {
-			list.add( new Puzzle(this));
+			list.add(new Puzzle(this));
 			this.Permutation_Basse();
 		}
 		if (this.Permutation_Basse()) {
