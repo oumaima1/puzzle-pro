@@ -15,9 +15,9 @@ public class FenetreDetail extends JFrame {
 
 	ArrayList<Puzzle> List_successeurs = new ArrayList<Puzzle>();
 	ArrayList<Puzzle> Chemin = new ArrayList<Puzzle>();
-
 	Puzzle puzzle;
 	IHeuristique heuristique;
+
 	JButton btSuivat = new JButton("Suivant");
 	JButton btPrecedent = new JButton("Precedent");
 	JButton btRsolution = new JButton("Resolution");
@@ -25,6 +25,7 @@ public class FenetreDetail extends JFrame {
 	public FenetreDetail(IHeuristique h, Puzzle p) {
 		puzzle = p;
 		heuristique = h;
+		puzzle.setheuristique(h);
 		this.init();
 		this.setVisible(true);
 	}
@@ -33,7 +34,7 @@ public class FenetreDetail extends JFrame {
 		// fenetre ************************************************************
 
 		this.setSize(405, 250);
-		this.setTitle("D�tails");
+		this.setTitle("Details");
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 
@@ -61,47 +62,49 @@ public class FenetreDetail extends JFrame {
 
 		btPrecedent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				for (Puzzle p : Chemin) {
+					System.out.println(p);
+				}
 			}
 		});
 		// Clique sur le bouton Suivant
 		// *****************************************
 		btSuivat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println(puzzle.heuristique());
 			}
 		});
 		// Clique sur le bouton Resolution
 		// *****************************************
 		btRsolution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				Chemin.clear();
 				List_successeurs.clear();
 				boolean solution_trove = false;
 
 				List_successeurs.add(puzzle);
-				Puzzle meilleur = null;
+				Puzzle meilleur = List_successeurs.get(0);
+				meilleur.setheuristique(heuristique);
 
 				while (List_successeurs.size() > 0 && !solution_trove) {
-					meilleur = List_successeurs.get(0);
 					for (int i = 1; i < List_successeurs.size(); i++) {
 						Puzzle p = List_successeurs.get(i);
+						p.setheuristique(heuristique);
 						if (meilleur.heuristique() > p.heuristique()) {
 							meilleur = p;
 						}
 					}
-				}
-				Chemin.add(meilleur);
-				List_successeurs.clear();
-				// tester la solution avec l'etat finalle
-
-				if (meilleur.isInit()) {
-					solution_trove = true;
-				} else {
-					ArrayList<Puzzle> list = meilleur.Successeurs();
-					for (Puzzle p : list) {
-						if (!Chemin.contains(p)) {
-							List_successeurs.add(p);
+					Chemin.add(meilleur);
+					List_successeurs.clear();
+					if (meilleur.isInit()) {
+						solution_trove = true;
+					} else {
+						ArrayList<Puzzle> list = meilleur.Successeurs();
+						for (Puzzle p : list) {
+							if (!Chemin.contains(p)) {
+								List_successeurs.add(p);
+							}
 						}
 					}
 				}

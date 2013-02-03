@@ -1,6 +1,7 @@
 package khalid.pro;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Puzzle {
@@ -195,14 +196,15 @@ public class Puzzle {
 
 		for (int i = 0; i < dimension; i++) {
 			for (int j = 0; j < dimension; j++) {
-				if (tab[i][j].getValeur() != obj.getCase(i, j).getValeur()
-						&& tab[i][j].getOrdre() != obj.getCase(i, j).getOrdre()) {
+				if (tab[i][j].getValeur() != obj.tab[i][j].getValeur()) {
 					return false;
 				}
 			}
 		}
 		return true;
 	}
+
+	
 
 	public String toString() {
 		String str = "";
