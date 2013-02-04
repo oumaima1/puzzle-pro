@@ -58,7 +58,8 @@ public class Puzzle {
 		for (int i = 0; i < dimension; i++) {
 			for (int j = 0; j < dimension; j++) {
 				if (tab[i][j].getValeur() != (char) compt) {
-					if (i == dimension - 1 && j == dimension - 1 && tab[i][j].getValeur()=='0') {
+					if (i == dimension - 1 && j == dimension - 1
+							&& tab[i][j].getValeur() == '0') {
 						return true;
 					} else {
 						return false;
@@ -205,15 +206,10 @@ public class Puzzle {
 	}
 
 	public boolean equals(Puzzle obj) {
-
-		for (int i = 0; i < dimension; i++) {
-			for (int j = 0; j < dimension; j++) {
-				if (tab[i][j].getValeur() != obj.tab[i][j].getValeur()) {
-					return false;
-				}
-			}
+		if (this.toString() == obj.toString()) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	public String toString() {
