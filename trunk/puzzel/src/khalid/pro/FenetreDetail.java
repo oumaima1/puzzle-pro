@@ -101,23 +101,30 @@ public class FenetreDetail extends JFrame {
 						}
 					}
 					Chemin.add(meilleur);
-
 					List_successeurs.clear();
 					if (meilleur.isInit()) {
 						solution_trove = true;
 					} else {
 						ArrayList<Puzzle> list = meilleur.Successeurs();
 						for (Puzzle p : list) {
-							if (!Chemin.contains(p)) {
+							if (existDansChemin(p)<0) {
 								List_successeurs.add(p);
 							}
 						}
 					}
 				}
-
 			}
 		});
+	}
 
+	private int existDansChemin(Puzzle p) {
+		for (int i = 0; i < Chemin.size() - 1; i++) {
+			if (p.equals(Chemin.get(i))) {
+				System.out.println(i);
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	private void jouer(int i) {
