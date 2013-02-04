@@ -101,6 +101,7 @@ public class FenetreDetail extends JFrame {
 						}
 					}
 					Chemin.add(meilleur);
+
 					List_successeurs.clear();
 					if (meilleur.isInit()) {
 						solution_trove = true;
@@ -113,6 +114,7 @@ public class FenetreDetail extends JFrame {
 						}
 					}
 				}
+
 			}
 		});
 
