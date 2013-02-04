@@ -89,7 +89,7 @@ public class FenetreDetail extends JFrame {
 				boolean solution_trove = false;
 				Puzzle meilleur = null;
 
-				List_successeurs.add(puzzle);
+				List_successeurs.add(new Puzzle(puzzle));
 				while (List_successeurs.size() > 0 && !solution_trove) {
 					meilleur = List_successeurs.get(0);
 					meilleur.setheuristique(heuristique);
@@ -101,7 +101,6 @@ public class FenetreDetail extends JFrame {
 						}
 					}
 					Chemin.add(meilleur);
-					System.out.println(meilleur);
 					List_successeurs.clear();
 					if (meilleur.isInit()) {
 						solution_trove = true;
