@@ -17,6 +17,7 @@ public class FenetreDetail extends JFrame {
 	ArrayList<Puzzle> Chemin = new ArrayList<Puzzle>();
 	Puzzle puzzle;
 	IHeuristique heuristique;
+	private int jeu = 0;
 
 	JButton btSuivat = new JButton("Suivant");
 	JButton btPrecedent = new JButton("Precedent");
@@ -62,8 +63,9 @@ public class FenetreDetail extends JFrame {
 
 		btPrecedent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (Puzzle p : Chemin) {
-					System.out.println(p);
+				if (jeu > 0) {
+					jeu--;
+					jouer(jeu);
 				}
 			}
 		});
@@ -71,31 +73,35 @@ public class FenetreDetail extends JFrame {
 		// *****************************************
 		btSuivat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(puzzle.heuristique());
+				if (jeu < Chemin.size() - 1) {
+					jeu++;
+					jouer(jeu);
+				}
 			}
 		});
 		// Clique sur le bouton Resolution
 		// *****************************************
 		btRsolution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				jeu = 0;
 				Chemin.clear();
 				List_successeurs.clear();
 				boolean solution_trove = false;
+				Puzzle meilleur = null;
 
 				List_successeurs.add(puzzle);
-				Puzzle meilleur = List_successeurs.get(0);
-				meilleur.setheuristique(heuristique);
-
 				while (List_successeurs.size() > 0 && !solution_trove) {
+					meilleur = List_successeurs.get(0);
+					meilleur.setheuristique(heuristique);
 					for (int i = 1; i < List_successeurs.size(); i++) {
 						Puzzle p = List_successeurs.get(i);
 						p.setheuristique(heuristique);
-						if (meilleur.heuristique() > p.heuristique()) {
+						if (p.heuristique() < meilleur.heuristique()) {
 							meilleur = p;
 						}
 					}
 					Chemin.add(meilleur);
+					System.out.println(meilleur);
 					List_successeurs.clear();
 					if (meilleur.isInit()) {
 						solution_trove = true;
@@ -110,5 +116,11 @@ public class FenetreDetail extends JFrame {
 				}
 			}
 		});
+
+	}
+
+	private void jouer(int i) {
+		puzzle.setPuzzle(Chemin.get(jeu));
+		Fenetre.surface.refresh();
 	}
 }

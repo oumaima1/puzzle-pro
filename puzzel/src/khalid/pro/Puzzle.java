@@ -25,6 +25,15 @@ public class Puzzle {
 			}
 		}
 	}
+	public void setPuzzle(Puzzle p) {
+		this.dimension = p.getDimension();
+		tab = new Case[dimension][dimension];
+		for (int i = 0; i < dimension; i++) {
+			for (int j = 0; j < dimension; j++) {
+				this.tab[i][j] = p.tab[i][j];
+			}
+		}
+	}
 
 	public Case getCase(int i, int j) {
 		return this.tab[i][j];
