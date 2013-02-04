@@ -25,6 +25,7 @@ public class Puzzle {
 			}
 		}
 	}
+
 	public void setPuzzle(Puzzle p) {
 		this.dimension = p.getDimension();
 		tab = new Case[dimension][dimension];
@@ -57,7 +58,9 @@ public class Puzzle {
 		for (int i = 0; i < dimension; i++) {
 			for (int j = 0; j < dimension; j++) {
 				if (tab[i][j].getValeur() != (char) compt) {
-					if (i != dimension - 1 && j != dimension - 1) {
+					if (i == dimension - 1 && j == dimension - 1 && tab[i][j].getValeur()=='0') {
+						return true;
+					} else {
 						return false;
 					}
 				}
@@ -212,8 +215,6 @@ public class Puzzle {
 		}
 		return true;
 	}
-
-	
 
 	public String toString() {
 		String str = "";
