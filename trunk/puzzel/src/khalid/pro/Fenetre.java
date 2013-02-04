@@ -16,7 +16,7 @@ import javax.tools.DiagnosticCollector;
 public class Fenetre extends JFrame implements KeyListener {
 
 	Puzzle puzzle;
-	Surface surface;
+	static Surface surface;
 
 	JMenuBar menu = new JMenuBar();
 	
@@ -30,10 +30,10 @@ public class Fenetre extends JFrame implements KeyListener {
 	JMenuItem mi4 = new JMenuItem("4 x 4");
 	JMenuItem mi5 = new JMenuItem("5 x 5");
 	JMenuItem miQuitter = new JMenuItem("Quitter");
-	JMenuItem mih1 = new JMenuItem("h1 :Case male placé");
+	JMenuItem mih1 = new JMenuItem("h1 :Case male place");
 	JMenuItem mih2 = new JMenuItem("h2 :Somme des distances ");
 	JMenuItem miInitatisation =new JMenuItem("Initialisation");
-	JMenuItem miDesordonnee =new JMenuItem("Desordonnée");
+	JMenuItem miDesordonnee =new JMenuItem("Desordonnee");
 	
 	
 
@@ -113,6 +113,7 @@ public class Fenetre extends JFrame implements KeyListener {
 			public void actionPerformed(ActionEvent e) {
 				
 				FenetreDetail f=new FenetreDetail(new casesNonPlace(),puzzle);
+				
 			}
 		});
 		mih2.addActionListener(new ActionListener() {
@@ -124,7 +125,7 @@ public class Fenetre extends JFrame implements KeyListener {
 		// ------------------------------------------------------------------------------
 
 		this.puzzle = new Puzzle(3);
-		this.surface = new Surface(puzzle, 400);
+		surface = new Surface(puzzle, 400);
 		this.getContentPane().add(surface);
 
 	}
@@ -151,7 +152,7 @@ public class Fenetre extends JFrame implements KeyListener {
 
 	public void initPuzzle(int dimension) {
 		this.puzzle.setDimension(dimension);
-		this.surface.refresh();
+		surface.refresh();
 	}
 
 }
