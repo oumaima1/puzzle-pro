@@ -185,7 +185,7 @@ public class Puzzle {
 	public void Desordonner() {
 		Random r = new Random();
 		int valeur;
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 30; i++) {
 			valeur = 1 + r.nextInt(4);
 			switch (valeur) {
 			case 1:
