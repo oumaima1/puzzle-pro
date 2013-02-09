@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class FenetreDetail extends JFrame {
@@ -22,6 +24,10 @@ public class FenetreDetail extends JFrame {
 	JButton btSuivat = new JButton("Suivant");
 	JButton btPrecedent = new JButton("Precedent");
 	JButton btRsolution = new JButton("Resolution");
+	JLabel lblHeuristique = new JLabel("Heuristique : ");
+	JLabel lblCout = new JLabel("Le Cout : ");
+	JLabel lblMouvement = new JLabel("Mouvement N°: ");
+	JLabel lblTotalDeplacement = new JLabel("Total des deplacement : ");
 
 	public FenetreDetail(IHeuristique h, Puzzle p) {
 		puzzle = p;
@@ -58,6 +64,22 @@ public class FenetreDetail extends JFrame {
 		pan_bt.add(btPrecedent, BorderLayout.WEST);
 		this.getContentPane().add(pan_bt, BorderLayout.SOUTH);
 
+		// Label ****************************************
+
+		Box b1 = Box.createHorizontalBox();
+		b1.add(lblHeuristique);
+		Box b2 = Box.createHorizontalBox();
+		b2.add(lblCout);
+		Box b3 = Box.createHorizontalBox();
+		b3.add(lblMouvement);
+		Box b4 = Box.createHorizontalBox();
+		b4.add(lblTotalDeplacement);
+		Box b = Box.createVerticalBox();
+		b.add(b1);
+		b.add(b4);
+		b.add(b3);
+		b.add(b2);
+		pan_info.add(b);
 		// Clique sur le bouton Prï¿½cedent
 		// *****************************************
 
@@ -84,13 +106,17 @@ public class FenetreDetail extends JFrame {
 		btRsolution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jeu = 0;
+				int compt = 0;
 				Chemin.clear();
 				List_successeurs.clear();
 				boolean solution_trove = false;
 				Puzzle meilleur = null;
 
 				List_successeurs.add(new Puzzle(puzzle));
-				while (List_successeurs.size() > 0 && !solution_trove) {
+				while (compt < 20 && List_successeurs.size() > 0
+						&& !solution_trove) {
+					compt++;
+					System.out.println(List_successeurs.size());
 					meilleur = List_successeurs.get(0);
 					meilleur.setheuristique(heuristique);
 					for (int i = 1; i < List_successeurs.size(); i++) {
@@ -100,16 +126,16 @@ public class FenetreDetail extends JFrame {
 							meilleur = p;
 						}
 					}
-					Chemin.add(meilleur);
-					List_successeurs.clear();
 					if (meilleur.isInit()) {
 						solution_trove = true;
+						Chemin.add(meilleur);
 					} else {
-						ArrayList<Puzzle> list = meilleur.Successeurs();
-						for (Puzzle p : list) {
-							if (existDansChemin(p)<0) {
-								List_successeurs.add(p);
-							}
+						if (existDansChemin(meilleur) >= 0) {
+							List_successeurs.remove(meilleur);
+						} else {
+							Chemin.add(meilleur);
+							List_successeurs.clear();
+							List_successeurs = meilleur.Successeurs();
 						}
 					}
 				}
@@ -130,5 +156,9 @@ public class FenetreDetail extends JFrame {
 	private void jouer(int i) {
 		puzzle.setPuzzle(Chemin.get(jeu));
 		Fenetre.surface.refresh();
+		lblHeuristique.setText("Heuristique : " + heuristique.toString());
+		lblMouvement.setText("Mouvement N°: " + jeu);
+		lblTotalDeplacement.setText("Total des deplacement : " + Chemin.size());
+		lblCout.setText("Le Cout : " + Chemin.get(jeu).heuristique());
 	}
 }

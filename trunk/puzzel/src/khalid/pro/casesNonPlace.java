@@ -19,4 +19,10 @@ public class casesNonPlace implements IHeuristique {
 		return n;
 	}
 
+	@Override
+	public String toString() {
+		return "le nombre de case mal placées ";
+	}
+	
+
 }
