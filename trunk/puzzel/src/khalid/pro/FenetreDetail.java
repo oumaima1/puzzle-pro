@@ -106,17 +106,13 @@ public class FenetreDetail extends JFrame {
 		btRsolution.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jeu = 0;
-				int compt = 0;
 				Chemin.clear();
 				List_successeurs.clear();
 				boolean solution_trove = false;
 				Puzzle meilleur = null;
 
 				List_successeurs.add(new Puzzle(puzzle));
-				while (List_successeurs.size() > 0
-						&& !solution_trove) {
-					compt++;
-					System.out.println(List_successeurs.size());
+				while (List_successeurs.size() > 0 && !solution_trove) {
 					meilleur = List_successeurs.get(0);
 					meilleur.setheuristique(heuristique);
 					for (int i = 1; i < List_successeurs.size(); i++) {
@@ -131,7 +127,6 @@ public class FenetreDetail extends JFrame {
 						Chemin.add(meilleur);
 					} else {
 						if (existDansChemin(meilleur) >= 0) {
-							System.out.println("kayna o tkoun");
 							List_successeurs.remove(meilleur);
 						} else {
 							Chemin.add(meilleur);
@@ -140,6 +135,7 @@ public class FenetreDetail extends JFrame {
 						}
 					}
 				}
+				jouer(jeu);
 			}
 		});
 	}
@@ -147,7 +143,6 @@ public class FenetreDetail extends JFrame {
 	private int existDansChemin(Puzzle p) {
 		for (int i = 0; i < Chemin.size() - 1; i++) {
 			if (p.equals(Chemin.get(i))) {
-				System.out.println(i);
 				return i;
 			}
 		}
