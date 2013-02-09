@@ -206,7 +206,7 @@ public class Puzzle {
 	}
 
 	public boolean equals(Puzzle obj) {
-		if (this.toString() == obj.toString()) {
+		if (this.toString().equals(obj.toString())) {
 			return true;
 		}
 		return false;
