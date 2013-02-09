@@ -21,7 +21,7 @@ public class sommeDistances implements IHeuristique {
 		return somme;
 	}
 	public String toString() {
-		return "Somme des distances Manhattan)";
+		return "Somme des distances Manhattan";
 	}
 	
 }

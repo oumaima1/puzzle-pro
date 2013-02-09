@@ -30,8 +30,9 @@ public class Fenetre extends JFrame implements KeyListener {
 	JMenuItem mi4 = new JMenuItem("4 x 4");
 	JMenuItem mi5 = new JMenuItem("5 x 5");
 	JMenuItem miQuitter = new JMenuItem("Quitter");
-	JMenuItem mih1 = new JMenuItem("h1 :Case male place");
-	JMenuItem mih2 = new JMenuItem("h2 :Somme des distances ");
+	JMenuItem mih1 = new JMenuItem("h1 : Case male placee");
+	JMenuItem mih2 = new JMenuItem("h2 : Case bien placee");
+	JMenuItem mih3 = new JMenuItem("h3 : Somme des distances ");
 	JMenuItem miInitatisation =new JMenuItem("Initialisation");
 	JMenuItem miDesordonnee =new JMenuItem("Desordonnee");
 	
@@ -66,6 +67,7 @@ public class Fenetre extends JFrame implements KeyListener {
 		menuDimension.add(mi5);
 		menuHeristique.add(mih1);
 		menuHeristique.add(mih2);
+		menuHeristique.add(mih3);
 		menuAction.add(miInitatisation);
 		menuAction.add(miDesordonnee);
 		
@@ -117,6 +119,11 @@ public class Fenetre extends JFrame implements KeyListener {
 			}
 		});
 		mih2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FenetreDetail f=new FenetreDetail(new caseBienPlacee(),puzzle);
+			}
+		});
+		mih3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FenetreDetail f=new FenetreDetail(new sommeDistances(),puzzle);
 			}
