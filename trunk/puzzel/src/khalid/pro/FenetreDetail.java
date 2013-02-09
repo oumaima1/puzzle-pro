@@ -40,7 +40,7 @@ public class FenetreDetail extends JFrame {
 	public void init() {
 		// fenetre ************************************************************
 
-		this.setSize(405, 250);
+		this.setSize(350, 200);
 		this.setTitle("Details");
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -113,7 +113,7 @@ public class FenetreDetail extends JFrame {
 				Puzzle meilleur = null;
 
 				List_successeurs.add(new Puzzle(puzzle));
-				while (compt < 20 && List_successeurs.size() > 0
+				while (List_successeurs.size() > 0
 						&& !solution_trove) {
 					compt++;
 					System.out.println(List_successeurs.size());
@@ -131,6 +131,7 @@ public class FenetreDetail extends JFrame {
 						Chemin.add(meilleur);
 					} else {
 						if (existDansChemin(meilleur) >= 0) {
+							System.out.println("kayna o tkoun");
 							List_successeurs.remove(meilleur);
 						} else {
 							Chemin.add(meilleur);
