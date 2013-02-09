@@ -40,7 +40,7 @@ public class FenetreDetail extends JFrame {
 	public void init() {
 		// fenetre ************************************************************
 
-		this.setSize(350, 200);
+		this.setSize(350, 220);
 		this.setTitle("Details");
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
@@ -55,7 +55,7 @@ public class FenetreDetail extends JFrame {
 
 		JPanel pan_bt = new JPanel();
 		pan_bt.setBorder(BorderFactory.createTitledBorder(""));
-		Dimension dim = new Dimension(120, 35);
+		Dimension dim = new Dimension(110, 35);
 		btPrecedent.setPreferredSize(dim);
 		btSuivat.setPreferredSize(dim);
 		pan_bt.setLayout(new BorderLayout());
@@ -65,7 +65,7 @@ public class FenetreDetail extends JFrame {
 		this.getContentPane().add(pan_bt, BorderLayout.SOUTH);
 
 		// Label ****************************************
-
+		lblHeuristique.setText("Heuristique : " + heuristique.toString());
 		Box b1 = Box.createHorizontalBox();
 		b1.add(lblHeuristique);
 		Box b2 = Box.createHorizontalBox();
@@ -152,7 +152,6 @@ public class FenetreDetail extends JFrame {
 	private void jouer(int i) {
 		puzzle.setPuzzle(Chemin.get(jeu));
 		Fenetre.surface.refresh();
-		lblHeuristique.setText("Heuristique : " + heuristique.toString());
 		lblMouvement.setText("Mouvement N°: " + jeu);
 		lblTotalDeplacement.setText("Total des deplacement : " + Chemin.size());
 		lblCout.setText("Le Cout : " + Chemin.get(jeu).heuristique());
