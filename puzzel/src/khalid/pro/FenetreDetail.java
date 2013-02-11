@@ -153,7 +153,7 @@ public class FenetreDetail extends JFrame {
 		puzzle.setPuzzle(Chemin.get(jeu));
 		Fenetre.surface.refresh();
 		lblMouvement.setText("Mouvement N°: " + jeu);
-		lblTotalDeplacement.setText("Total des deplacement : " + Chemin.size());
+		lblTotalDeplacement.setText("Total des deplacement : " + (Chemin.size()-1));
 		lblCout.setText("Le Cout : " + Chemin.get(jeu).heuristique());
 	}
 }
