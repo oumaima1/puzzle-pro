@@ -1,0 +1,1 @@
+Le projet consiste à réalisé une application de jeu de taquin ,avec une proposition de trouver la solution automatique grâce à l'algorithme heuristique A
